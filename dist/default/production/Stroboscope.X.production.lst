@@ -1,0 +1,1248 @@
+
+
+Microchip MPLAB XC8 Assembler V2.41 build 20230208172133 
+                                                                                               Sun Jul 23 00:35:58 2023
+
+Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og9 
+     1                           	processor	16F616
+     2                           	pagewidth 120
+     3                           	opt	flic
+     4                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     5                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1,noexec
+     6                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1,noexec
+     7                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1,noexec
+     8                           	psect	maintext,global,class=CODE,split=1,delta=2
+     9                           	psect	text1,local,class=CODE,merge=1,delta=2
+    10                           	psect	text2,local,class=CODE,merge=1,delta=2
+    11                           	psect	text3,local,class=CODE,merge=1,delta=2,group=1
+    12                           	psect	text4,local,class=CODE,merge=1,delta=2,group=1
+    13                           	psect	text5,local,class=CODE,merge=1,delta=2
+    14                           	psect	text6,local,class=CODE,merge=1,delta=2
+    15                           	psect	text7,local,class=CODE,merge=1,delta=2
+    16                           	psect	intentry,global,class=CODE,delta=2
+    17                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=2,noexec
+    18                           	dabs	1,0x7E,2
+    19     0000                     
+    20                           ; Generated 09/02/2023 GMT
+    21                           ; 
+    22                           ; Copyright © 2023, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    23                           ; All rights reserved.
+    24                           ; 
+    25                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    26                           ; 
+    27                           ; Redistribution and use in source and binary forms, with or without modification, are
+    28                           ; permitted provided that the following conditions are met:
+    29                           ; 
+    30                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    31                           ;        conditions and the following disclaimer.
+    32                           ; 
+    33                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    34                           ;        of conditions and the following disclaimer in the documentation and/or other
+    35                           ;        materials provided with the distribution. Publication is not required when
+    36                           ;        this file is used in an embedded application.
+    37                           ; 
+    38                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    39                           ;        software without specific prior written permission.
+    40                           ; 
+    41                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    42                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    43                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    44                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    45                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    46                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    47                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    48                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    49                           ; 
+    50                           ; 
+    51                           ; Code-generator required, PIC16F616 Definitions
+    52                           ; 
+    53                           ; SFR Addresses
+    54     0000                     	;# 
+    55     0001                     	;# 
+    56     0002                     	;# 
+    57     0003                     	;# 
+    58     0004                     	;# 
+    59     0005                     	;# 
+    60     0007                     	;# 
+    61     000A                     	;# 
+    62     000B                     	;# 
+    63     000C                     	;# 
+    64     000E                     	;# 
+    65     000E                     	;# 
+    66     000F                     	;# 
+    67     0010                     	;# 
+    68     0011                     	;# 
+    69     0012                     	;# 
+    70     0013                     	;# 
+    71     0013                     	;# 
+    72     0014                     	;# 
+    73     0015                     	;# 
+    74     0016                     	;# 
+    75     0017                     	;# 
+    76     0019                     	;# 
+    77     001A                     	;# 
+    78     001B                     	;# 
+    79     001C                     	;# 
+    80     001E                     	;# 
+    81     001F                     	;# 
+    82     0081                     	;# 
+    83     0085                     	;# 
+    84     0087                     	;# 
+    85     008C                     	;# 
+    86     008E                     	;# 
+    87     0090                     	;# 
+    88     0091                     	;# 
+    89     0092                     	;# 
+    90     0095                     	;# 
+    91     0095                     	;# 
+    92     0096                     	;# 
+    93     0096                     	;# 
+    94     0099                     	;# 
+    95     0099                     	;# 
+    96     009A                     	;# 
+    97     009E                     	;# 
+    98     009F                     	;# 
+    99     0005                     _PORTAbits	set	5
+   100     0007                     _PORTCbits	set	7
+   101     000B                     _INTCONbits	set	11
+   102     0096                     _IOCAbits	set	150
+   103     0091                     _ANSEL	set	145
+   104     0087                     _TRISCbits	set	135
+   105                           
+   106                           	psect	cinit
+   107     000B                     start_initialization:	
+   108                           ; #config settings
+   109                           
+   110     000B                     __initialization:
+   111                           
+   112                           ; Clear objects allocated to BANK0
+   113     000B  1283               	bcf	3,5	;RP0=0, select bank0
+   114     000C  01AF               	clrf	__pbssBANK0& (0+127)
+   115     000D                     end_of_initialization:	
+   116                           ;End of C runtime variable initialization code
+   117                           
+   118     000D                     __end_of__initialization:
+   119     000D  0183               	clrf	3
+   120     000E  2857               	ljmp	_main	;jump to C main() function
+   121                           
+   122                           	psect	bssBANK0
+   123     002F                     __pbssBANK0:
+   124     002F                     _int_F:
+   125     002F                     	ds	1
+   126                           
+   127                           	psect	cstackCOMMON
+   128     0070                     __pcstackCOMMON:
+   129     0070                     ?_MAX7219_Setup:
+   130     0070                     ?_ISR_function:	
+   131                           ; 1 bytes @ 0x0
+   132                           
+   133     0070                     ??_ISR_function:	
+   134                           ; 1 bytes @ 0x0
+   135                           
+   136                           
+   137                           ; 1 bytes @ 0x0
+   138     0070                     	ds	2
+   139     0072                     ?_SPI_send:
+   140     0072                     ?___lwdiv:	
+   141                           ; 1 bytes @ 0x2
+   142                           
+   143     0072                     ?___lwmod:	
+   144                           ; 2 bytes @ 0x2
+   145                           
+   146     0072                     SPI_send@data:	
+   147                           ; 2 bytes @ 0x2
+   148                           
+   149     0072                     ___lwdiv@divisor:	
+   150                           ; 1 bytes @ 0x2
+   151                           
+   152     0072                     ___lwmod@divisor:	
+   153                           ; 2 bytes @ 0x2
+   154                           
+   155                           
+   156                           ; 2 bytes @ 0x2
+   157     0072                     	ds	1
+   158     0073                     ??_SPI_send:
+   159                           
+   160                           ; 1 bytes @ 0x3
+   161     0073                     	ds	1
+   162     0074                     SPI_send@addr:
+   163     0074                     ___lwdiv@dividend:	
+   164                           ; 1 bytes @ 0x4
+   165                           
+   166     0074                     ___lwmod@dividend:	
+   167                           ; 2 bytes @ 0x4
+   168                           
+   169                           
+   170                           ; 2 bytes @ 0x4
+   171     0074                     	ds	1
+   172     0075                     SPI_send@i:
+   173                           
+   174                           ; 2 bytes @ 0x5
+   175     0075                     	ds	1
+   176     0076                     ??___lwdiv:
+   177     0076                     ??___lwmod:	
+   178                           ; 1 bytes @ 0x6
+   179                           
+   180     0076                     ___lwmod@counter:	
+   181                           ; 1 bytes @ 0x6
+   182                           
+   183     0076                     ___lwdiv@quotient:	
+   184                           ; 1 bytes @ 0x6
+   185                           
+   186                           
+   187                           ; 2 bytes @ 0x6
+   188     0076                     	ds	1
+   189     0077                     ??_MAX7219_Setup:
+   190     0077                     ?_display_digit:	
+   191                           ; 1 bytes @ 0x7
+   192                           
+   193     0077                     display_digit@digit_X:	
+   194                           ; 1 bytes @ 0x7
+   195                           
+   196                           
+   197                           ; 2 bytes @ 0x7
+   198     0077                     	ds	1
+   199     0078                     ___lwdiv@counter:
+   200                           
+   201                           ; 1 bytes @ 0x8
+   202     0078                     	ds	1
+   203     0079                     display_digit@val:
+   204                           
+   205                           ; 2 bytes @ 0x9
+   206     0079                     	ds	2
+   207     007B                     ??_display_num:
+   208     007B                     ??_display_digit:	
+   209                           ; 1 bytes @ 0xB
+   210                           
+   211                           
+   212                           	psect	cstackBANK0
+   213     0020                     __pcstackBANK0:	
+   214                           ; 1 bytes @ 0xB
+   215                           
+   216     0020                     ?_display_num:
+   217     0020                     display_num@val:	
+   218                           ; 1 bytes @ 0x0
+   219                           
+   220                           
+   221                           ; 2 bytes @ 0x0
+   222     0020                     	ds	2
+   223     0022                     display_num@i:
+   224                           
+   225                           ; 2 bytes @ 0x2
+   226     0022                     	ds	2
+   227     0024                     ?_main:
+   228     0024                     main@argc:	
+   229                           ; 2 bytes @ 0x4
+   230                           
+   231                           
+   232                           ; 2 bytes @ 0x4
+   233     0024                     	ds	2
+   234     0026                     main@argv:
+   235                           
+   236                           ; 2 bytes @ 0x6
+   237     0026                     	ds	2
+   238     0028                     ??_main:
+   239                           
+   240                           ; 1 bytes @ 0x8
+   241     0028                     	ds	4
+   242     002C                     main@counter:
+   243                           
+   244                           ; 2 bytes @ 0xC
+   245     002C                     	ds	2
+   246     002E                     main@dir:
+   247                           
+   248                           ; 1 bytes @ 0xE
+   249     002E                     	ds	1
+   250                           
+   251                           	psect	maintext
+   252     0057                     __pmaintext:	
+   253 ;;
+   254 ;;Main: autosize = 0, tempsize = 4, incstack = 0, save=0
+   255 ;;
+   256 ;; *************** function _main *****************
+   257 ;; Defined at:
+   258 ;;		line 63 in file "Stroboscope.c"
+   259 ;; Parameters:    Size  Location     Type
+   260 ;;  argc            2    4[BANK0 ] int 
+   261 ;;  argv            2    6[BANK0 ] PTR PTR unsigned char 
+   262 ;; Auto vars:     Size  Location     Type
+   263 ;;  counter         2   12[BANK0 ] unsigned int 
+   264 ;;  dir             1   14[BANK0 ] unsigned char 
+   265 ;; Return value:  Size  Location     Type
+   266 ;;                  2    4[BANK0 ] int 
+   267 ;; Registers used:
+   268 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
+   269 ;; Tracked objects:
+   270 ;;		On entry : B00/0
+   271 ;;		On exit  : 100/0
+   272 ;;		Unchanged: 0/0
+   273 ;; Data sizes:     COMMON   BANK0   BANK1
+   274 ;;      Params:         0       4       0
+   275 ;;      Locals:         0       3       0
+   276 ;;      Temps:          0       4       0
+   277 ;;      Totals:         0      11       0
+   278 ;;Total ram usage:       11 bytes
+   279 ;; Hardware stack levels required when called: 4
+   280 ;; This function calls:
+   281 ;;		_MAX7219_Setup
+   282 ;;		_display_num
+   283 ;; This function is called by:
+   284 ;;		Startup code after reset
+   285 ;; This function uses a non-reentrant model
+   286 ;;
+   287                           
+   288     0057                     _main:	
+   289                           ;psect for function _main
+   290                           
+   291                           
+   292                           ;Stroboscope.c: 64: TRISCbits.TRISC2 = 0;
+   293                           
+   294                           ;incstack = 0
+   295                           ; Regs used in _main: [wreg+status,2+status,0+btemp+1+pclath+cstack]
+   296     0057  1683               	bsf	3,5	;RP0=1, select bank1
+   297     0058  1107               	bcf	7,2	;volatile
+   298                           
+   299                           ;Stroboscope.c: 65: TRISCbits.TRISC1 = 0;
+   300     0059  1087               	bcf	7,1	;volatile
+   301                           
+   302                           ;Stroboscope.c: 66: TRISCbits.TRISC0 = 0;
+   303     005A  1007               	bcf	7,0	;volatile
+   304                           
+   305                           ;Stroboscope.c: 67: TRISCbits.TRISC3 = 0;
+   306     005B  1187               	bcf	7,3	;volatile
+   307                           
+   308                           ;Stroboscope.c: 68: ANSEL = 0;
+   309     005C  0191               	clrf	17	;volatile
+   310                           
+   311                           ;Stroboscope.c: 69: IOCAbits.IOC0 = 1;
+   312     005D  1416               	bsf	22,0	;volatile
+   313                           
+   314                           ;Stroboscope.c: 70: INTCONbits.GIE = 1;
+   315     005E  178B               	bsf	11,7	;volatile
+   316                           
+   317                           ;Stroboscope.c: 71: INTCONbits.RAIE = 1;
+   318     005F  158B               	bsf	11,3	;volatile
+   319                           
+   320                           ;Stroboscope.c: 73: PORTCbits.RC0 = 0;
+   321     0060  1283               	bcf	3,5	;RP0=0, select bank0
+   322     0061  1007               	bcf	7,0	;volatile
+   323                           
+   324                           ;Stroboscope.c: 74: PORTCbits.RC1 = 1;
+   325     0062  1487               	bsf	7,1	;volatile
+   326                           
+   327                           ;Stroboscope.c: 75: PORTCbits.RC2 = 0;
+   328     0063  1107               	bcf	7,2	;volatile
+   329                           
+   330                           ;Stroboscope.c: 76: MAX7219_Setup();
+   331     0064  213B               	fcall	_MAX7219_Setup
+   332                           
+   333                           ;Stroboscope.c: 78: uint16_t counter = 5;
+   334     0065  3005               	movlw	5
+   335     0066  00AC               	movwf	main@counter
+   336     0067  3000               	movlw	0
+   337     0068  00AD               	movwf	main@counter+1
+   338                           
+   339                           ;Stroboscope.c: 79: uint8_t dir;;Stroboscope.c: 80: int_F = 0;
+   340     0069  01AF               	clrf	_int_F
+   341                           
+   342                           ;Stroboscope.c: 81: display_num(12345678);
+   343     006A  304E               	movlw	78
+   344     006B  00A0               	movwf	display_num@val
+   345     006C  3061               	movlw	97
+   346     006D  00A1               	movwf	display_num@val+1
+   347     006E  20D3               	fcall	_display_num
+   348     006F                     l740:
+   349                           
+   350                           ;Stroboscope.c: 84: if (int_F){
+   351     006F  1283               	bcf	3,5	;RP0=0, select bank0
+   352     0070  082F               	movf	_int_F,w
+   353     0071  1903               	btfsc	3,2
+   354     0072  286F               	goto	l740
+   355                           
+   356                           ;Stroboscope.c: 85: dir = (PORTAbits.RA0 + PORTAbits.RA1)%2;
+   357     0073  0C05               	rrf	5,w	;volatile
+   358     0074  3901               	andlw	1
+   359     0075  00A8               	movwf	??_main
+   360     0076  0805               	movf	5,w	;volatile
+   361     0077  3901               	andlw	1
+   362     0078  0728               	addwf	??_main,w
+   363     0079  3901               	andlw	1
+   364     007A  00AE               	movwf	main@dir
+   365                           
+   366                           ;Stroboscope.c: 86: counter += dir*2 - 1;
+   367     007B  082E               	movf	main@dir,w
+   368     007C  00A8               	movwf	??_main
+   369     007D  01A9               	clrf	??_main+1
+   370     007E  1003               	clrc
+   371     007F  0DA8               	rlf	??_main,f
+   372     0080  0DA9               	rlf	??_main+1,f
+   373     0081  0828               	movf	??_main,w
+   374     0082  3EFF               	addlw	255
+   375     0083  00AA               	movwf	??_main+2
+   376     0084  0829               	movf	??_main+1,w
+   377     0085  1803               	skipnc
+   378     0086  3E01               	addlw	1
+   379     0087  3EFF               	addlw	255
+   380     0088  00AB               	movwf	??_main+3
+   381     0089  082A               	movf	??_main+2,w
+   382     008A  07AC               	addwf	main@counter,f
+   383     008B  1803               	skipnc
+   384     008C  0AAD               	incf	main@counter+1,f
+   385     008D  082B               	movf	??_main+3,w
+   386     008E  07AD               	addwf	main@counter+1,f
+   387                           
+   388                           ;Stroboscope.c: 87: display_num(counter);
+   389     008F  082D               	movf	main@counter+1,w
+   390     0090  00A1               	movwf	display_num@val+1
+   391     0091  082C               	movf	main@counter,w
+   392     0092  00A0               	movwf	display_num@val
+   393     0093  20D3               	fcall	_display_num
+   394                           
+   395                           ;Stroboscope.c: 88: int_F = 0;
+   396     0094  1283               	bcf	3,5	;RP0=0, select bank0
+   397     0095  01AF               	clrf	_int_F
+   398     0096  286F               	goto	l740
+   399     0097                     __end_of_main:
+   400                           
+   401                           	psect	text1
+   402     00D3                     __ptext1:	
+   403 ;; *************** function _display_num *****************
+   404 ;; Defined at:
+   405 ;;		line 126 in file "Stroboscope.c"
+   406 ;; Parameters:    Size  Location     Type
+   407 ;;  val             2    0[BANK0 ] unsigned int 
+   408 ;; Auto vars:     Size  Location     Type
+   409 ;;  i               2    2[BANK0 ] int 
+   410 ;; Return value:  Size  Location     Type
+   411 ;;                  1    wreg      void 
+   412 ;; Registers used:
+   413 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
+   414 ;; Tracked objects:
+   415 ;;		On entry : 100/0
+   416 ;;		On exit  : 0/0
+   417 ;;		Unchanged: 0/0
+   418 ;; Data sizes:     COMMON   BANK0   BANK1
+   419 ;;      Params:         0       2       0
+   420 ;;      Locals:         0       2       0
+   421 ;;      Temps:          0       0       0
+   422 ;;      Totals:         0       4       0
+   423 ;;Total ram usage:        4 bytes
+   424 ;; Hardware stack levels used: 1
+   425 ;; Hardware stack levels required when called: 3
+   426 ;; This function calls:
+   427 ;;		___lwdiv
+   428 ;;		___lwmod
+   429 ;;		_display_digit
+   430 ;; This function is called by:
+   431 ;;		_main
+   432 ;; This function uses a non-reentrant model
+   433 ;;
+   434                           
+   435     00D3                     _display_num:	
+   436                           ;psect for function _display_num
+   437                           
+   438                           
+   439                           ;Stroboscope.c: 127: int i;;Stroboscope.c: 128: for (i=1; i<=8; i++){
+   440                           
+   441                           ;incstack = 0
+   442                           ; Regs used in _display_num: [wreg+status,2+status,0+btemp+1+pclath+cstack]
+   443     00D3  3001               	movlw	1
+   444     00D4  00A2               	movwf	display_num@i
+   445     00D5  3000               	movlw	0
+   446     00D6  00A3               	movwf	display_num@i+1
+   447     00D7                     l706:
+   448                           
+   449                           ;Stroboscope.c: 129: display_digit(i, val%10);
+   450     00D7  1283               	bcf	3,5	;RP0=0, select bank0
+   451     00D8  0823               	movf	display_num@i+1,w
+   452     00D9  00F8               	movwf	display_digit@digit_X+1
+   453     00DA  0822               	movf	display_num@i,w
+   454     00DB  00F7               	movwf	display_digit@digit_X
+   455     00DC  300A               	movlw	10
+   456     00DD  00F2               	movwf	___lwmod@divisor
+   457     00DE  3000               	movlw	0
+   458     00DF  00F3               	movwf	___lwmod@divisor+1
+   459     00E0  0821               	movf	display_num@val+1,w
+   460     00E1  00F5               	movwf	___lwmod@dividend+1
+   461     00E2  0820               	movf	display_num@val,w
+   462     00E3  00F4               	movwf	___lwmod@dividend
+   463     00E4  2109               	fcall	___lwmod
+   464     00E5  0873               	movf	?___lwmod+1,w
+   465     00E6  00FA               	movwf	display_digit@val+1
+   466     00E7  0872               	movf	?___lwmod,w
+   467     00E8  00F9               	movwf	display_digit@val
+   468     00E9  215C               	fcall	_display_digit
+   469                           
+   470                           ;Stroboscope.c: 130: val /= 10;
+   471     00EA  300A               	movlw	10
+   472     00EB  00F2               	movwf	___lwdiv@divisor
+   473     00EC  3000               	movlw	0
+   474     00ED  00F3               	movwf	___lwdiv@divisor+1
+   475     00EE  0821               	movf	display_num@val+1,w
+   476     00EF  00F5               	movwf	___lwdiv@dividend+1
+   477     00F0  0820               	movf	display_num@val,w
+   478     00F1  00F4               	movwf	___lwdiv@dividend
+   479     00F2  2097               	fcall	___lwdiv
+   480     00F3  0873               	movf	?___lwdiv+1,w
+   481     00F4  00A1               	movwf	display_num@val+1
+   482     00F5  0872               	movf	?___lwdiv,w
+   483     00F6  00A0               	movwf	display_num@val
+   484     00F7  3001               	movlw	1
+   485     00F8  07A2               	addwf	display_num@i,f
+   486     00F9  1803               	skipnc
+   487     00FA  0AA3               	incf	display_num@i+1,f
+   488     00FB  3000               	movlw	0
+   489     00FC  07A3               	addwf	display_num@i+1,f
+   490     00FD  0823               	movf	display_num@i+1,w
+   491     00FE  3A80               	xorlw	128
+   492     00FF  00FF               	movwf	127
+   493     0100  3080               	movlw	128
+   494     0101  027F               	subwf	127,w
+   495     0102  1D03               	skipz
+   496     0103  2906               	goto	u425
+   497     0104  3009               	movlw	9
+   498     0105  0222               	subwf	display_num@i,w
+   499     0106                     u425:
+   500     0106  1803               	btfsc	3,0
+   501     0107  0008               	return
+   502     0108  28D7               	goto	l706
+   503     0109                     __end_of_display_num:
+   504                           
+   505                           	psect	text2
+   506     015C                     __ptext2:	
+   507 ;; *************** function _display_digit *****************
+   508 ;; Defined at:
+   509 ;;		line 122 in file "Stroboscope.c"
+   510 ;; Parameters:    Size  Location     Type
+   511 ;;  digit_X         2    7[COMMON] int 
+   512 ;;  val             2    9[COMMON] int 
+   513 ;; Auto vars:     Size  Location     Type
+   514 ;;		None
+   515 ;; Return value:  Size  Location     Type
+   516 ;;                  1    wreg      void 
+   517 ;; Registers used:
+   518 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
+   519 ;; Tracked objects:
+   520 ;;		On entry : 100/0
+   521 ;;		On exit  : 100/0
+   522 ;;		Unchanged: 0/0
+   523 ;; Data sizes:     COMMON   BANK0   BANK1
+   524 ;;      Params:         4       0       0
+   525 ;;      Locals:         0       0       0
+   526 ;;      Temps:          0       0       0
+   527 ;;      Totals:         4       0       0
+   528 ;;Total ram usage:        4 bytes
+   529 ;; Hardware stack levels used: 1
+   530 ;; Hardware stack levels required when called: 2
+   531 ;; This function calls:
+   532 ;;		_SPI_send
+   533 ;; This function is called by:
+   534 ;;		_display_num
+   535 ;; This function uses a non-reentrant model
+   536 ;;
+   537                           
+   538     015C                     _display_digit:	
+   539                           ;psect for function _display_digit
+   540                           
+   541                           
+   542                           ;Stroboscope.c: 123: SPI_send(digit_X, val);
+   543                           
+   544                           ;incstack = 0
+   545                           ; Regs used in _display_digit: [wreg+status,2+status,0+btemp+1+pclath+cstack]
+   546     015C  0879               	movf	display_digit@val,w
+   547     015D  00F2               	movwf	SPI_send@data
+   548     015E  0877               	movf	display_digit@digit_X,w
+   549     015F  200F               	fcall	_SPI_send
+   550     0160  0008               	return
+   551     0161                     __end_of_display_digit:
+   552                           
+   553                           	psect	text3
+   554     0109                     __ptext3:	
+   555 ;; *************** function ___lwmod *****************
+   556 ;; Defined at:
+   557 ;;		line 5 in file "C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c"
+   558 ;; Parameters:    Size  Location     Type
+   559 ;;  divisor         2    2[COMMON] unsigned int 
+   560 ;;  dividend        2    4[COMMON] unsigned int 
+   561 ;; Auto vars:     Size  Location     Type
+   562 ;;  counter         1    6[COMMON] unsigned char 
+   563 ;; Return value:  Size  Location     Type
+   564 ;;                  2    2[COMMON] unsigned int 
+   565 ;; Registers used:
+   566 ;;		wreg, status,2, status,0, btemp+1
+   567 ;; Tracked objects:
+   568 ;;		On entry : 100/0
+   569 ;;		On exit  : 100/0
+   570 ;;		Unchanged: 100/0
+   571 ;; Data sizes:     COMMON   BANK0   BANK1
+   572 ;;      Params:         4       0       0
+   573 ;;      Locals:         1       0       0
+   574 ;;      Temps:          0       0       0
+   575 ;;      Totals:         5       0       0
+   576 ;;Total ram usage:        5 bytes
+   577 ;; Hardware stack levels used: 1
+   578 ;; Hardware stack levels required when called: 1
+   579 ;; This function calls:
+   580 ;;		Nothing
+   581 ;; This function is called by:
+   582 ;;		_display_num
+   583 ;; This function uses a non-reentrant model
+   584 ;;
+   585                           
+   586     0109                     ___lwmod:	
+   587                           ;psect for function ___lwmod
+   588                           
+   589                           
+   590                           ;incstack = 0
+   591                           ; Regs used in ___lwmod: [wreg+status,2+status,0+btemp+1]
+   592     0109  0872               	movf	___lwmod@divisor,w
+   593     010A  0473               	iorwf	___lwmod@divisor+1,w
+   594     010B  1903               	btfsc	3,2
+   595     010C  2936               	goto	l694
+   596     010D  01F6               	clrf	___lwmod@counter
+   597     010E  0AF6               	incf	___lwmod@counter,f
+   598     010F                     l684:
+   599     010F  1BF3               	btfsc	___lwmod@divisor+1,7
+   600     0110  291D               	goto	l686
+   601     0111  3001               	movlw	1
+   602     0112                     u375:
+   603     0112  1003               	clrc
+   604     0113  0DF2               	rlf	___lwmod@divisor,f
+   605     0114  0DF3               	rlf	___lwmod@divisor+1,f
+   606     0115  3EFF               	addlw	-1
+   607     0116  1D03               	skipz
+   608     0117  2912               	goto	u375
+   609     0118  3001               	movlw	1
+   610     0119  00FF               	movwf	127
+   611     011A  087F               	movf	127,w
+   612     011B  07F6               	addwf	___lwmod@counter,f
+   613     011C  290F               	goto	l684
+   614     011D                     l686:
+   615     011D  0873               	movf	___lwmod@divisor+1,w
+   616     011E  0275               	subwf	___lwmod@dividend+1,w
+   617     011F  1D03               	skipz
+   618     0120  2923               	goto	u395
+   619     0121  0872               	movf	___lwmod@divisor,w
+   620     0122  0274               	subwf	___lwmod@dividend,w
+   621     0123                     u395:
+   622     0123  1C03               	skipc
+   623     0124  292B               	goto	l690
+   624     0125  0872               	movf	___lwmod@divisor,w
+   625     0126  02F4               	subwf	___lwmod@dividend,f
+   626     0127  0873               	movf	___lwmod@divisor+1,w
+   627     0128  1C03               	skipc
+   628     0129  03F5               	decf	___lwmod@dividend+1,f
+   629     012A  02F5               	subwf	___lwmod@dividend+1,f
+   630     012B                     l690:
+   631     012B  3001               	movlw	1
+   632     012C                     u405:
+   633     012C  1003               	clrc
+   634     012D  0CF3               	rrf	___lwmod@divisor+1,f
+   635     012E  0CF2               	rrf	___lwmod@divisor,f
+   636     012F  3EFF               	addlw	-1
+   637     0130  1D03               	skipz
+   638     0131  292C               	goto	u405
+   639     0132  3001               	movlw	1
+   640     0133  02F6               	subwf	___lwmod@counter,f
+   641     0134  1D03               	btfss	3,2
+   642     0135  291D               	goto	l686
+   643     0136                     l694:
+   644     0136  0875               	movf	___lwmod@dividend+1,w
+   645     0137  00F3               	movwf	?___lwmod+1
+   646     0138  0874               	movf	___lwmod@dividend,w
+   647     0139  00F2               	movwf	?___lwmod
+   648     013A  0008               	return
+   649     013B                     __end_of___lwmod:
+   650                           
+   651                           	psect	text4
+   652     0097                     __ptext4:	
+   653 ;; *************** function ___lwdiv *****************
+   654 ;; Defined at:
+   655 ;;		line 5 in file "C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c"
+   656 ;; Parameters:    Size  Location     Type
+   657 ;;  divisor         2    2[COMMON] unsigned int 
+   658 ;;  dividend        2    4[COMMON] unsigned int 
+   659 ;; Auto vars:     Size  Location     Type
+   660 ;;  quotient        2    6[COMMON] unsigned int 
+   661 ;;  counter         1    8[COMMON] unsigned char 
+   662 ;; Return value:  Size  Location     Type
+   663 ;;                  2    2[COMMON] unsigned int 
+   664 ;; Registers used:
+   665 ;;		wreg, status,2, status,0, btemp+1
+   666 ;; Tracked objects:
+   667 ;;		On entry : 100/0
+   668 ;;		On exit  : 100/0
+   669 ;;		Unchanged: 100/0
+   670 ;; Data sizes:     COMMON   BANK0   BANK1
+   671 ;;      Params:         4       0       0
+   672 ;;      Locals:         3       0       0
+   673 ;;      Temps:          0       0       0
+   674 ;;      Totals:         7       0       0
+   675 ;;Total ram usage:        7 bytes
+   676 ;; Hardware stack levels used: 1
+   677 ;; Hardware stack levels required when called: 1
+   678 ;; This function calls:
+   679 ;;		Nothing
+   680 ;; This function is called by:
+   681 ;;		_display_num
+   682 ;; This function uses a non-reentrant model
+   683 ;;
+   684                           
+   685     0097                     ___lwdiv:	
+   686                           ;psect for function ___lwdiv
+   687                           
+   688                           
+   689                           ;incstack = 0
+   690                           ; Regs used in ___lwdiv: [wreg+status,2+status,0+btemp+1]
+   691     0097  01F6               	clrf	___lwdiv@quotient
+   692     0098  01F7               	clrf	___lwdiv@quotient+1
+   693     0099  0872               	movf	___lwdiv@divisor,w
+   694     009A  0473               	iorwf	___lwdiv@divisor+1,w
+   695     009B  1903               	btfsc	3,2
+   696     009C  28CE               	goto	l672
+   697     009D  01F8               	clrf	___lwdiv@counter
+   698     009E  0AF8               	incf	___lwdiv@counter,f
+   699     009F                     l660:
+   700     009F  1BF3               	btfsc	___lwdiv@divisor+1,7
+   701     00A0  28AD               	goto	l662
+   702     00A1  3001               	movlw	1
+   703     00A2                     u305:
+   704     00A2  1003               	clrc
+   705     00A3  0DF2               	rlf	___lwdiv@divisor,f
+   706     00A4  0DF3               	rlf	___lwdiv@divisor+1,f
+   707     00A5  3EFF               	addlw	-1
+   708     00A6  1D03               	skipz
+   709     00A7  28A2               	goto	u305
+   710     00A8  3001               	movlw	1
+   711     00A9  00FF               	movwf	127
+   712     00AA  087F               	movf	127,w
+   713     00AB  07F8               	addwf	___lwdiv@counter,f
+   714     00AC  289F               	goto	l660
+   715     00AD                     l662:
+   716     00AD  3001               	movlw	1
+   717     00AE                     u325:
+   718     00AE  1003               	clrc
+   719     00AF  0DF6               	rlf	___lwdiv@quotient,f
+   720     00B0  0DF7               	rlf	___lwdiv@quotient+1,f
+   721     00B1  3EFF               	addlw	-1
+   722     00B2  1D03               	skipz
+   723     00B3  28AE               	goto	u325
+   724     00B4  0873               	movf	___lwdiv@divisor+1,w
+   725     00B5  0275               	subwf	___lwdiv@dividend+1,w
+   726     00B6  1D03               	skipz
+   727     00B7  28BA               	goto	u335
+   728     00B8  0872               	movf	___lwdiv@divisor,w
+   729     00B9  0274               	subwf	___lwdiv@dividend,w
+   730     00BA                     u335:
+   731     00BA  1C03               	skipc
+   732     00BB  28C3               	goto	l668
+   733     00BC  0872               	movf	___lwdiv@divisor,w
+   734     00BD  02F4               	subwf	___lwdiv@dividend,f
+   735     00BE  0873               	movf	___lwdiv@divisor+1,w
+   736     00BF  1C03               	skipc
+   737     00C0  03F5               	decf	___lwdiv@dividend+1,f
+   738     00C1  02F5               	subwf	___lwdiv@dividend+1,f
+   739     00C2  1476               	bsf	___lwdiv@quotient,0
+   740     00C3                     l668:
+   741     00C3  3001               	movlw	1
+   742     00C4                     u345:
+   743     00C4  1003               	clrc
+   744     00C5  0CF3               	rrf	___lwdiv@divisor+1,f
+   745     00C6  0CF2               	rrf	___lwdiv@divisor,f
+   746     00C7  3EFF               	addlw	-1
+   747     00C8  1D03               	skipz
+   748     00C9  28C4               	goto	u345
+   749     00CA  3001               	movlw	1
+   750     00CB  02F8               	subwf	___lwdiv@counter,f
+   751     00CC  1D03               	btfss	3,2
+   752     00CD  28AD               	goto	l662
+   753     00CE                     l672:
+   754     00CE  0877               	movf	___lwdiv@quotient+1,w
+   755     00CF  00F3               	movwf	?___lwdiv+1
+   756     00D0  0876               	movf	___lwdiv@quotient,w
+   757     00D1  00F2               	movwf	?___lwdiv
+   758     00D2  0008               	return
+   759     00D3                     __end_of___lwdiv:
+   760                           
+   761                           	psect	text5
+   762     013B                     __ptext5:	
+   763 ;; *************** function _MAX7219_Setup *****************
+   764 ;; Defined at:
+   765 ;;		line 114 in file "Stroboscope.c"
+   766 ;; Parameters:    Size  Location     Type
+   767 ;;		None
+   768 ;; Auto vars:     Size  Location     Type
+   769 ;;		None
+   770 ;; Return value:  Size  Location     Type
+   771 ;;                  1    wreg      void 
+   772 ;; Registers used:
+   773 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
+   774 ;; Tracked objects:
+   775 ;;		On entry : B00/0
+   776 ;;		On exit  : 100/0
+   777 ;;		Unchanged: 0/0
+   778 ;; Data sizes:     COMMON   BANK0   BANK1
+   779 ;;      Params:         0       0       0
+   780 ;;      Locals:         0       0       0
+   781 ;;      Temps:          0       0       0
+   782 ;;      Totals:         0       0       0
+   783 ;;Total ram usage:        0 bytes
+   784 ;; Hardware stack levels used: 1
+   785 ;; Hardware stack levels required when called: 2
+   786 ;; This function calls:
+   787 ;;		_SPI_send
+   788 ;; This function is called by:
+   789 ;;		_main
+   790 ;; This function uses a non-reentrant model
+   791 ;;
+   792                           
+   793     013B                     _MAX7219_Setup:	
+   794                           ;psect for function _MAX7219_Setup
+   795                           
+   796                           
+   797                           ;Stroboscope.c: 115: SPI_send(0x0F,0x00);
+   798                           
+   799                           ;incstack = 0
+   800                           ; Regs used in _MAX7219_Setup: [wreg+status,2+status,0+btemp+1+pclath+cstack]
+   801     013B  01F2               	clrf	SPI_send@data
+   802     013C  300F               	movlw	15
+   803     013D  200F               	fcall	_SPI_send
+   804                           
+   805                           ;Stroboscope.c: 116: SPI_send(0x09,0xFF);
+   806     013E  30FF               	movlw	255
+   807     013F  00F2               	movwf	SPI_send@data
+   808     0140  3009               	movlw	9
+   809     0141  200F               	fcall	_SPI_send
+   810                           
+   811                           ;Stroboscope.c: 117: SPI_send(0x0A,0x08);
+   812     0142  3008               	movlw	8
+   813     0143  00F2               	movwf	SPI_send@data
+   814     0144  300A               	movlw	10
+   815     0145  200F               	fcall	_SPI_send
+   816                           
+   817                           ;Stroboscope.c: 118: SPI_send(0x0B,0x07);
+   818     0146  3007               	movlw	7
+   819     0147  00F2               	movwf	SPI_send@data
+   820     0148  300B               	movlw	11
+   821     0149  200F               	fcall	_SPI_send
+   822                           
+   823                           ;Stroboscope.c: 119: SPI_send(0x0C,0x01);
+   824     014A  01F2               	clrf	SPI_send@data
+   825     014B  0AF2               	incf	SPI_send@data,f
+   826     014C  300C               	movlw	12
+   827     014D  200F               	fcall	_SPI_send
+   828     014E  0008               	return
+   829     014F                     __end_of_MAX7219_Setup:
+   830                           
+   831                           	psect	text6
+   832     000F                     __ptext6:	
+   833 ;; *************** function _SPI_send *****************
+   834 ;; Defined at:
+   835 ;;		line 95 in file "Stroboscope.c"
+   836 ;; Parameters:    Size  Location     Type
+   837 ;;  addr            1    wreg     unsigned char 
+   838 ;;  data            1    2[COMMON] unsigned char 
+   839 ;; Auto vars:     Size  Location     Type
+   840 ;;  addr            1    4[COMMON] unsigned char 
+   841 ;;  i               2    5[COMMON] int 
+   842 ;; Return value:  Size  Location     Type
+   843 ;;                  1    wreg      void 
+   844 ;; Registers used:
+   845 ;;		wreg, status,2, status,0, btemp+1
+   846 ;; Tracked objects:
+   847 ;;		On entry : 100/0
+   848 ;;		On exit  : 100/0
+   849 ;;		Unchanged: 0/0
+   850 ;; Data sizes:     COMMON   BANK0   BANK1
+   851 ;;      Params:         1       0       0
+   852 ;;      Locals:         3       0       0
+   853 ;;      Temps:          1       0       0
+   854 ;;      Totals:         5       0       0
+   855 ;;Total ram usage:        5 bytes
+   856 ;; Hardware stack levels used: 1
+   857 ;; Hardware stack levels required when called: 1
+   858 ;; This function calls:
+   859 ;;		Nothing
+   860 ;; This function is called by:
+   861 ;;		_MAX7219_Setup
+   862 ;;		_display_digit
+   863 ;; This function uses a non-reentrant model
+   864 ;;
+   865                           
+   866     000F                     _SPI_send:	
+   867                           ;psect for function _SPI_send
+   868                           
+   869                           
+   870                           ;incstack = 0
+   871                           ; Regs used in _SPI_send: [wreg+status,2+status,0+btemp+1]
+   872                           ;SPI_send@addr stored from wreg
+   873     000F  00F4               	movwf	SPI_send@addr
+   874                           
+   875                           ;Stroboscope.c: 96: int i;;Stroboscope.c: 97: PORTCbits.RC1 = 0;
+   876     0010  1087               	bcf	7,1	;volatile
+   877                           
+   878                           ;Stroboscope.c: 98: for (i=0; i<8; i++){
+   879     0011  01F5               	clrf	SPI_send@i
+   880     0012  01F6               	clrf	SPI_send@i+1
+   881     0013                     l36:
+   882                           
+   883                           ;Stroboscope.c: 99: PORTCbits.RC0 = 0;
+   884     0013  1283               	bcf	3,5	;RP0=0, select bank0
+   885     0014  1007               	bcf	7,0	;volatile
+   886                           
+   887                           ;Stroboscope.c: 100: PORTCbits.RC2 = (addr & 0b10000000) ? 1:0 ;
+   888     0015  1FF4               	btfss	SPI_send@addr,7
+   889     0016  281A               	goto	u230
+   890     0017  1283               	bcf	3,5	;RP0=0, select bank0
+   891     0018  1507               	bsf	7,2	;volatile
+   892     0019  281C               	goto	u244
+   893     001A                     u230:
+   894     001A  1283               	bcf	3,5	;RP0=0, select bank0
+   895     001B  1107               	bcf	7,2	;volatile
+   896     001C                     u244:
+   897                           
+   898                           ;Stroboscope.c: 101: PORTCbits.RC0 = 1;
+   899     001C  1407               	bsf	7,0	;volatile
+   900                           
+   901                           ;Stroboscope.c: 102: addr = addr << 1;
+   902     001D  0874               	movf	SPI_send@addr,w
+   903     001E  00F3               	movwf	??_SPI_send
+   904     001F  0773               	addwf	??_SPI_send,w
+   905     0020  00F4               	movwf	SPI_send@addr
+   906     0021  3001               	movlw	1
+   907     0022  07F5               	addwf	SPI_send@i,f
+   908     0023  1803               	skipnc
+   909     0024  0AF6               	incf	SPI_send@i+1,f
+   910     0025  3000               	movlw	0
+   911     0026  07F6               	addwf	SPI_send@i+1,f
+   912     0027  0876               	movf	SPI_send@i+1,w
+   913     0028  3A80               	xorlw	128
+   914     0029  00FF               	movwf	127
+   915     002A  3080               	movlw	128
+   916     002B  027F               	subwf	127,w
+   917     002C  1D03               	skipz
+   918     002D  2830               	goto	u255
+   919     002E  3008               	movlw	8
+   920     002F  0275               	subwf	SPI_send@i,w
+   921     0030                     u255:
+   922     0030  1C03               	skipc
+   923     0031  2813               	goto	l36
+   924                           
+   925                           ;Stroboscope.c: 103: };Stroboscope.c: 104: for (i=0; i<8; i++){
+   926     0032  01F5               	clrf	SPI_send@i
+   927     0033  01F6               	clrf	SPI_send@i+1
+   928     0034                     l38:
+   929                           
+   930                           ;Stroboscope.c: 105: PORTCbits.RC0 = 0;
+   931     0034  1283               	bcf	3,5	;RP0=0, select bank0
+   932     0035  1007               	bcf	7,0	;volatile
+   933                           
+   934                           ;Stroboscope.c: 106: PORTCbits.RC2 = (data & 0b10000000) ? 1:0 ;
+   935     0036  1FF2               	btfss	SPI_send@data,7
+   936     0037  283B               	goto	u260
+   937     0038  1283               	bcf	3,5	;RP0=0, select bank0
+   938     0039  1507               	bsf	7,2	;volatile
+   939     003A  283D               	goto	u274
+   940     003B                     u260:
+   941     003B  1283               	bcf	3,5	;RP0=0, select bank0
+   942     003C  1107               	bcf	7,2	;volatile
+   943     003D                     u274:
+   944                           
+   945                           ;Stroboscope.c: 107: PORTCbits.RC0 = 1;
+   946     003D  1407               	bsf	7,0	;volatile
+   947                           
+   948                           ;Stroboscope.c: 108: data = data << 1;
+   949     003E  0872               	movf	SPI_send@data,w
+   950     003F  00F3               	movwf	??_SPI_send
+   951     0040  0773               	addwf	??_SPI_send,w
+   952     0041  00F2               	movwf	SPI_send@data
+   953     0042  3001               	movlw	1
+   954     0043  07F5               	addwf	SPI_send@i,f
+   955     0044  1803               	skipnc
+   956     0045  0AF6               	incf	SPI_send@i+1,f
+   957     0046  3000               	movlw	0
+   958     0047  07F6               	addwf	SPI_send@i+1,f
+   959     0048  0876               	movf	SPI_send@i+1,w
+   960     0049  3A80               	xorlw	128
+   961     004A  00FF               	movwf	127
+   962     004B  3080               	movlw	128
+   963     004C  027F               	subwf	127,w
+   964     004D  1D03               	skipz
+   965     004E  2851               	goto	u285
+   966     004F  3008               	movlw	8
+   967     0050  0275               	subwf	SPI_send@i,w
+   968     0051                     u285:
+   969     0051  1C03               	skipc
+   970     0052  2834               	goto	l38
+   971                           
+   972                           ;Stroboscope.c: 109: };Stroboscope.c: 110: PORTCbits.RC0 = 0;
+   973     0053  1283               	bcf	3,5	;RP0=0, select bank0
+   974     0054  1007               	bcf	7,0	;volatile
+   975                           
+   976                           ;Stroboscope.c: 111: PORTCbits.RC1 = 1;
+   977     0055  1487               	bsf	7,1	;volatile
+   978     0056  0008               	return
+   979     0057                     __end_of_SPI_send:
+   980                           
+   981                           	psect	text7
+   982     014F                     __ptext7:	
+   983 ;; *************** function _ISR_function *****************
+   984 ;; Defined at:
+   985 ;;		line 54 in file "Stroboscope.c"
+   986 ;; Parameters:    Size  Location     Type
+   987 ;;		None
+   988 ;; Auto vars:     Size  Location     Type
+   989 ;;		None
+   990 ;; Return value:  Size  Location     Type
+   991 ;;                  1    wreg      void 
+   992 ;; Registers used:
+   993 ;;		None
+   994 ;; Tracked objects:
+   995 ;;		On entry : 0/0
+   996 ;;		On exit  : 0/0
+   997 ;;		Unchanged: 0/0
+   998 ;; Data sizes:     COMMON   BANK0   BANK1
+   999 ;;      Params:         0       0       0
+  1000 ;;      Locals:         0       0       0
+  1001 ;;      Temps:          2       0       0
+  1002 ;;      Totals:         2       0       0
+  1003 ;;Total ram usage:        2 bytes
+  1004 ;; Hardware stack levels used: 1
+  1005 ;; This function calls:
+  1006 ;;		Nothing
+  1007 ;; This function is called by:
+  1008 ;;		Interrupt level 1
+  1009 ;; This function uses a non-reentrant model
+  1010 ;;
+  1011                           
+  1012     014F                     _ISR_function:	
+  1013                           ;psect for function _ISR_function
+  1014                           
+  1015                           
+  1016                           ;Stroboscope.c: 57: if (INTCONbits.RAIF){
+  1017     014F  1C0B               	btfss	11,0	;volatile
+  1018     0150  2955               	goto	i1l24
+  1019                           
+  1020                           ;Stroboscope.c: 58: int_F = 1;
+  1021     0151  1283               	bcf	3,5	;RP0=0, select bank0
+  1022     0152  01AF               	clrf	_int_F
+  1023     0153  0AAF               	incf	_int_F,f
+  1024                           
+  1025                           ;Stroboscope.c: 59: INTCONbits.RAIF = 0;
+  1026     0154  100B               	bcf	11,0	;volatile
+  1027     0155                     i1l24:
+  1028     0155  0871               	movf	??_ISR_function+1,w
+  1029     0156  008A               	movwf	10
+  1030     0157  0E70               	swapf	??_ISR_function,w
+  1031     0158  0083               	movwf	3
+  1032     0159  0EFE               	swapf	126,f
+  1033     015A  0E7E               	swapf	126,w
+  1034     015B  0009               	retfie
+  1035     015C                     __end_of_ISR_function:
+  1036     007E                     btemp	set	126	;btemp
+  1037     007E                     wtemp0	set	126
+  1038                           
+  1039                           	psect	intentry
+  1040     0004                     __pintentry:	
+  1041                           ;incstack = 0
+  1042                           ; Regs used in _ISR_function: []
+  1043                           
+  1044     0004                     interrupt_function:
+  1045     007E                     saved_w	set	btemp
+  1046     0004  00FE               	movwf	btemp
+  1047     0005  0E03               	swapf	3,w
+  1048     0006  00F0               	movwf	??_ISR_function
+  1049     0007  080A               	movf	10,w
+  1050     0008  00F1               	movwf	??_ISR_function+1
+  1051     0009  294F               	ljmp	_ISR_function
+  1052                           
+  1053                           	psect	config
+  1054                           
+  1055                           ;Config register CONFIG @ 0x2007
+  1056                           ;	Oscillator Selection bits
+  1057                           ;	FOSC = INTOSCIO, INTOSCIO oscillator: I/O function on RA4/OSC2/CLKOUT pin, I/O functio
+      +                          n on RA5/OSC1/CLKIN
+  1058                           ;	Watchdog Timer Enable bit
+  1059                           ;	WDTE = OFF, WDT disabled and can be enabled by SWDTEN bit of the WDTCON register
+  1060                           ;	Power-up Timer Enable bit
+  1061                           ;	PWRTE = OFF, PWRT disabled
+  1062                           ;	MCLR Pin Function Select bit
+  1063                           ;	MCLRE = OFF, MCLR pin function is digital input, MCLR internally tied to VDD
+  1064                           ;	Code Protection bit
+  1065                           ;	CP = OFF, Program memory code protection is disabled
+  1066                           ;	Internal Oscillator Frequency Select bit
+  1067                           ;	IOSCFS = 8MHZ, 8 MHz
+  1068                           ;	Brown-out Reset Selection bits
+  1069                           ;	BOREN = OFF, BOR Disabled
+  1070     2007                     	org	8199
+  1071     2007  3CD4               	dw	15572
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         1
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14     11      11
+    BANK0            80     15      16
+    BANK1            32      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    _display_num->_display_digit
+    _display_digit->_SPI_send
+    _display_digit->___lwmod
+    _MAX7219_Setup->_SPI_send
+
+Critical Paths under _ISR_function in COMMON
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    _main->_display_num
+
+Critical Paths under _ISR_function in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _ISR_function in BANK1
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                11     7      4    1749
+                                              4 BANK0     11     7      4
+                      _MAX7219_Setup
+                        _display_num
+ ---------------------------------------------------------------------------------
+ (1) _display_num                                          4     2      2    1262
+                                              0 BANK0      4     2      2
+                            ___lwdiv
+                            ___lwmod
+                      _display_digit
+ ---------------------------------------------------------------------------------
+ (2) _display_digit                                        4     0      4     570
+                                              7 COMMON     4     0      4
+                           _SPI_send
+                            ___lwmod (ARG)
+ ---------------------------------------------------------------------------------
+ (2) ___lwmod                                              5     1      4     245
+                                              2 COMMON     5     1      4
+ ---------------------------------------------------------------------------------
+ (2) ___lwdiv                                              7     3      4     248
+                                              2 COMMON     7     3      4
+ ---------------------------------------------------------------------------------
+ (1) _MAX7219_Setup                                        0     0      0     440
+                           _SPI_send
+ ---------------------------------------------------------------------------------
+ (3) _SPI_send                                             5     4      1     440
+                                              2 COMMON     5     4      1
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (4) _ISR_function                                         2     2      0       0
+                                              0 COMMON     2     2      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 4
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _MAX7219_Setup
+     _SPI_send
+   _display_num
+     ___lwdiv
+     ___lwmod
+     _display_digit
+       _SPI_send
+       ___lwmod (ARG)
+
+ _ISR_function (ROOT)
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMMON            E      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMMON               E      B       B       1       78.6%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+STACK                0      0       0       2        0.0%
+BITBANK0            50      0       0       3        0.0%
+BANK0               50      F      10       4       20.0%
+BANK1               20      0       0       5        0.0%
+ABS                  0      0      1B       6        0.0%
+BITBANK1            20      0       0       7        0.0%
+DATA                 0      0      1B       8        0.0%
+
+
+Microchip Technology PIC Macro Assembler V2.41 build 20230208172133 
+Symbol Table                                                                                   Sun Jul 23 00:35:58 2023
+
+                     l36 0013                       l38 0034             ?_display_num 0020  
+                    l706 00D7                      l660 009F                      l740 006F  
+                    l662 00AD                      l672 00CE                      l690 012B  
+                    l668 00C3                      l684 010F                      l686 011D  
+                    l694 0136                      u230 001A                      u305 00A2  
+                    u260 003B                      u244 001C                      u325 00AE  
+                    u405 012C                      u255 0030                      u335 00BA  
+                    u345 00C4                      u425 0106                      u274 003D  
+                    u285 0051                      u375 0112                      u395 0123  
+         ?_display_digit 0077              main@counter 002C                     i1l24 0155  
+                   _main 0057                     btemp 007E                     start 000A  
+                  ?_main 0024                    _ANSEL 0091          __end_of___lwdiv 00D3  
+        __end_of___lwmod 013B                    _int_F 002F                    pclath 000A  
+       __end_of_SPI_send 0057             display_num@i 0022                    status 0003  
+                  wtemp0 007E          __initialization 000B             __end_of_main 0097  
+                 ??_main 0028          ??_display_digit 007B                ??___lwdiv 0076  
+              ??___lwmod 0076                   saved_w 007E    __end_of_MAX7219_Setup 014F  
+__end_of__initialization 000D           __pcstackCOMMON 0070             SPI_send@addr 0074  
+           SPI_send@data 0072                ?_SPI_send 0072               __pbssBANK0 002F  
+             __pmaintext 0057               __pintentry 0004               ??_SPI_send 0073  
+          ?_ISR_function 0070                  ___lwdiv 0097                SPI_send@i 0075  
+                ___lwmod 0109     display_digit@digit_X 0077                  __ptext1 00D3  
+                __ptext2 015C                  __ptext3 0109                  __ptext4 0097  
+                __ptext5 013B                  __ptext6 000F                  __ptext7 014F  
+                main@dir 002E     end_of_initialization 000D           ??_ISR_function 0070  
+         display_num@val 0020                _PORTAbits 0005                _PORTCbits 0007  
+              _TRISCbits 0087    __end_of_display_digit 0161            ??_display_num 007B  
+    start_initialization 000B     __end_of_ISR_function 015C      __end_of_display_num 0109  
+              ___latbits 0000            __pcstackBANK0 0020         ___lwdiv@dividend 0074  
+               ?___lwdiv 0072                 ?___lwmod 0072         ___lwdiv@quotient 0076  
+          _MAX7219_Setup 013B        interrupt_function 0004                 _IOCAbits 0096  
+            _display_num 00D3                 _SPI_send 000F           ?_MAX7219_Setup 0070  
+        ___lwdiv@divisor 0072          ___lwdiv@counter 0078         display_digit@val 0079  
+           _ISR_function 014F                 main@argc 0024                 main@argv 0026  
+             _INTCONbits 000B          ??_MAX7219_Setup 0077                 intlevel1 0000  
+       ___lwmod@dividend 0074          ___lwmod@divisor 0072          ___lwmod@counter 0076  
+          _display_digit 015C  
