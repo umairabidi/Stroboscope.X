@@ -39,32 +39,36 @@
 #define INA_F INTCONbits.RAIF   // Interrupt flag
 #define OUT_LED PORTCbits.RC3   // LED Output
 
-// Interrupt setup
-// IO setup (3 input pins)
-// Interrupt (IOC) setup on INA
-// If change on INA, check state of INB
-// If high, CW. If Low, CCW
 volatile uint8_t int_F = 0;
-unsigned long prevTime = 0;
-unsigned long prevTime_button = 0;
-unsigned long prevTime_print = 0;
-unsigned long prevTime_LED = 0;
+volatile uint32_t millisCount = 0;
+uint32_t prevTime = 0;
+uint32_t prevTime_button = 0;
+uint32_t prevTime_print = 0;
+uint32_t prevTime_LED = 0;
 long speedRPM = 0;
 int resolution_i = 3;
-long resolutions[5] = {1, 5, 50, 500, 5000};
-unsigned long TimeHIGH;
-uint8_t LED_state = 0;
+uint8_t resolutions[5] = {1, 5, 50, 500, 5000};
+uint32_t TimeHIGH;
+bit LED_state = 0;
 
 
 void SPI_send(uint8_t addr, uint8_t data);
 void MAX7219_Setup();
 void display_digit(int digit_X, int val);
-void display_num(uint16_t val);
+void display_num(uint32_t val);
+void millisInit();
+uint32_t millis();
+
 
 void __interrupt() ISR_function(void){
     if (INA_F){     // If the IOC has triggered
         int_F = 1;  // set the indicator flag
         INA_F = 0;  // Clear the flag bit in register INTCON
+    }
+    if (INTCONbits.T0IF) {
+        INTCONbits.T0IF = 0;
+        millisCount++;
+        TMR0 = initialValue;
     }
 }
 
@@ -82,6 +86,7 @@ int main(int argc, char** argv) {
     CS = 1;
     DIN = 0;
     MAX7219_Setup();
+    millisInit();
     
     uint16_t counter = 5;
     uint8_t dir;            // Direction
@@ -89,7 +94,7 @@ int main(int argc, char** argv) {
     display_num(12345678);
     
     while(1){
-        if (int_F){w
+        if (int_F){
             dir = (INA + INB)%2;        // XOR doesn't seem to work...
             counter += dir*2 - 1;
             display_num(counter);
@@ -148,10 +153,26 @@ void display_digit(int digit_X, int val){
     SPI_send(digit_X, val);
 }
 
-void display_num(uint16_t val){
+void display_num(uint32_t val){
     int i;
     for (i=1; i<=8; i++){
         display_digit(i, val%10);
         val /= 10;
     }
+}
+
+void millisInit() {
+	OPTION_REGbits.T0CS = 0;    // Use internal clock (Fosc/4)
+    OPTION_REGbits.PSA = 0;     // Assign prescaler to Timer0
+    OPTION_REGbits.PS = 0b101;  // Prescaler 1:64
+    TMR0 = 21;
+    INTCONbits.T0IE = 1;        // Enable Timer0 interrupt
+    INTCONbits.GIE = 1;         // Enable global interrupts
+}
+
+uint32_t millis() {
+    INTCONbits.GIE = 0;
+    uint32_t result = millisCount;    
+    INTCONbits.GIE = 1;
+    return result;
 }
