@@ -3,37 +3,65 @@
 [d edition pro ]
 [d chip 16F616 ]
 [d frameptr 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+[v ___lldiv __lldiv `(ul  1 e 4 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\aldiv.c
+[v ___aldiv __aldiv `(l  1 e 4 0 ]
+"32 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\awtoft.c
+[v ___awtoft __awtoft `(f  1 e 3 0 ]
 "62 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\float.c
 [v ___ftpack __ftpack `(f  1 e 3 0 ]
 "86 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\ftadd.c
 [v ___ftadd __ftadd `(f  1 e 3 0 ]
-"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
-[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
-"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
-[v ___lwmod __lwmod `(ui  1 e 2 0 ]
-"54 D:\Backup\Files\Personal Projects\Coding\PIC_uC\MPLAB_X_3.00\Stroboscope.X\Stroboscope.c
+"4 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\ftge.c
+[v ___ftge __ftge `(b  1 e 0 0 ]
+"62 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 3 0 ]
+"44 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\fttol.c
+[v ___fttol __fttol `(l  1 e 4 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lbmod.c
+[v ___lbmod __lbmod `(uc  1 e 1 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\llmod.c
+[v ___llmod __llmod `(ul  1 e 4 0 ]
+"35 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lltoft.c
+[v ___lltoft __lltoft `(f  1 e 3 0 ]
+"28 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwtoft.c
+[v ___lwtoft __lwtoft `(f  1 e 3 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"73 D:\Backup\Files\Personal Projects\Coding\PIC_uC\MPLAB_X_3.00\Stroboscope.X\Stroboscope.c
 [v _ISR_function ISR_function `II(v  1 e 1 0 ]
-"63
+"85
 [v _main main `(i  1 e 2 0 ]
-"95
+"184
 [v _SPI_send SPI_send `(v  1 e 1 0 ]
-"114
+"203
 [v _MAX7219_Setup MAX7219_Setup `(v  1 e 1 0 ]
-"122
+"211
 [v _display_digit display_digit `(v  1 e 1 0 ]
-"126
+"215
 [v _display_num display_num `(v  1 e 1 0 ]
-[s S130 . 1 `uc 1 RA0 1 0 :1:0 
+"232
+[v _millis millis `(ul  1 e 4 0 ]
+"240
+[v _micros micros `(ul  1 e 4 0 ]
+"250
+[v _ButtonBounce ButtonBounce `(v  1 e 1 0 ]
+"59 C:\Program Files\Microchip\xc8\v2.41\pic\include\proc\pic16f616.h
+[v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
+[s S171 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
 `uc 1 RA4 1 0 :1:4 
 `uc 1 RA5 1 0 :1:5 
 ]
-"181 C:\Program Files\Microchip\xc8\v2.41\pic\include\proc\pic16f616.h
-[u S137 . 1 `S130 1 . 1 0 ]
-[v _PORTAbits PORTAbits `VES137  1 e 1 @5 ]
-[s S104 . 1 `uc 1 RC0 1 0 :1:0 
+"181
+[u S178 . 1 `S171 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES178  1 e 1 @5 ]
+[s S131 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -41,8 +69,8 @@
 `uc 1 RC5 1 0 :1:5 
 ]
 "231
-[u S111 . 1 `S104 1 . 1 0 ]
-[v _PORTCbits PORTCbits `VES111  1 e 1 @7 ]
+[u S138 . 1 `S131 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES138  1 e 1 @7 ]
 [s S22 . 1 `uc 1 RAIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
@@ -60,7 +88,21 @@
 ]
 [u S36 . 1 `S22 1 . 1 0 `S31 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES36  1 e 1 @11 ]
-[s S54 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S105 . 1 `uc 1 PS 1 0 :3:0 
+`uc 1 PSA 1 0 :1:3 
+`uc 1 T0SE 1 0 :1:4 
+`uc 1 T0CS 1 0 :1:5 
+`uc 1 INTEDG 1 0 :1:6 
+`uc 1 nRAPU 1 0 :1:7 
+]
+"1246
+[s S112 . 1 `uc 1 PS0 1 0 :1:0 
+`uc 1 PS1 1 0 :1:1 
+`uc 1 PS2 1 0 :1:2 
+]
+[u S116 . 1 `S105 1 . 1 0 `S112 1 . 1 0 ]
+[v _OPTION_REGbits OPTION_REGbits `VES116  1 e 1 @129 ]
+[s S55 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -68,11 +110,11 @@
 `uc 1 TRISC5 1 0 :1:5 
 ]
 "1361
-[u S61 . 1 `S54 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES61  1 e 1 @135 ]
+[u S62 . 1 `S55 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES62  1 e 1 @135 ]
 "1554
 [v _ANSEL ANSEL `VEuc  1 e 1 @145 ]
-[s S72 . 1 `uc 1 IOCA0 1 0 :1:0 
+[s S73 . 1 `uc 1 IOCA0 1 0 :1:0 
 `uc 1 IOCA1 1 0 :1:1 
 `uc 1 IOCA2 1 0 :1:2 
 `uc 1 IOCA3 1 0 :1:3 
@@ -80,84 +122,244 @@
 `uc 1 IOCA5 1 0 :1:5 
 ]
 "1805
-[s S79 . 1 `uc 1 IOC0 1 0 :1:0 
+[s S80 . 1 `uc 1 IOC0 1 0 :1:0 
 `uc 1 IOC1 1 0 :1:1 
 `uc 1 IOC2 1 0 :1:2 
 `uc 1 IOC3 1 0 :1:3 
 `uc 1 IOC4 1 0 :1:4 
 `uc 1 IOC5 1 0 :1:5 
 ]
-[u S86 . 1 `S72 1 . 1 0 `S79 1 . 1 0 ]
-[v _IOCAbits IOCAbits `VES86  1 e 1 @150 ]
-"47 D:\Backup\Files\Personal Projects\Coding\PIC_uC\MPLAB_X_3.00\Stroboscope.X\Stroboscope.c
-[v _int_F int_F `uc  1 e 1 0 ]
-"63
+[u S87 . 1 `S73 1 . 1 0 `S80 1 . 1 0 ]
+[v _IOCAbits IOCAbits `VES87  1 e 1 @150 ]
+"48 D:\Backup\Files\Personal Projects\Coding\PIC_uC\MPLAB_X_3.00\Stroboscope.X\Stroboscope.c
+[v _int_F int_F `VEb  1 e 0 0 ]
+"49
+[v _millisCount millisCount `VEul  1 e 4 0 ]
+"51
+[v _prevTime_button prevTime_button `ui  1 e 2 0 ]
+"53
+[v _prevTime_LED prevTime_LED `ui  1 e 2 0 ]
+"54
+[v _speedRPM speedRPM `ui  1 e 2 0 ]
+"55
+[v _TimePeriod TimePeriod `ui  1 e 2 0 ]
+"56
+[v _resolution_i resolution_i `uc  1 e 1 0 ]
+"59
+[v _LED_state LED_state `b  1 e 0 0 ]
+"60
+[v _button_pressed button_pressed `b  1 e 0 0 ]
+"85
 [v _main main `(i  1 e 2 0 ]
 {
-"78
-[v main@counter counter `ui  1 a 2 12 ]
-"79
-[v main@dir dir `uc  1 a 1 14 ]
-"93
+"112
+[v main@dir dir `uc  1 a 1 73 ]
+"182
 } 0
-"126
+"232
+[v _millis millis `(ul  1 e 4 0 ]
+{
+"234
+[v millis@result result `ul  1 a 4 9 ]
+"237
+} 0
+"240
+[v _micros micros `(ul  1 e 4 0 ]
+{
+"245
+[v micros@result result `ul  1 a 4 47 ]
+"248
+} 0
+"15 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+{
+"17
+[v ___lmul@product product `ul  1 a 4 0 ]
+"15
+[v ___lmul@multiplier multiplier `ul  1 p 4 2 ]
+[v ___lmul@multiplicand multiplicand `ul  1 p 4 6 ]
+"129
+} 0
+"35 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lltoft.c
+[v ___lltoft __lltoft `(f  1 e 3 0 ]
+{
+"37
+[v ___lltoft@exp exp `uc  1 a 1 8 ]
+"35
+[v ___lltoft@c c `ul  1 p 4 4 ]
+"46
+} 0
+"44 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\fttol.c
+[v ___fttol __fttol `(l  1 e 4 0 ]
+{
+"47
+[v ___fttol@lval lval `ul  1 a 4 38 ]
+"46
+[v ___fttol@exp1 exp1 `uc  1 a 1 42 ]
+[v ___fttol@sign1 sign1 `uc  1 a 1 37 ]
+"44
+[v ___fttol@f1 f1 `f  1 p 3 30 ]
+"73
+} 0
+"62 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 3 0 ]
+{
+"65
+[v ___ftmul@f3_as_product f3_as_product `um  1 a 3 13 ]
+"64
+[v ___ftmul@sign sign `uc  1 a 1 17 ]
+[v ___ftmul@cntr cntr `uc  1 a 1 16 ]
+[v ___ftmul@exp exp `uc  1 a 1 12 ]
+"62
+[v ___ftmul@f1 f1 `f  1 p 3 3 ]
+[v ___ftmul@f2 f2 `f  1 p 3 6 ]
+"157
+} 0
+"86 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+{
+"88
+[v ___ftadd@exp1 exp1 `uc  1 a 1 29 ]
+[v ___ftadd@exp2 exp2 `uc  1 a 1 28 ]
+[v ___ftadd@sign sign `uc  1 a 1 27 ]
+"86
+[v ___ftadd@f1 f1 `f  1 p 3 18 ]
+[v ___ftadd@f2 f2 `f  1 p 3 21 ]
+"148
+} 0
+"32 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\awtoft.c
+[v ___awtoft __awtoft `(f  1 e 3 0 ]
+{
+"34
+[v ___awtoft@sign sign `uc  1 a 1 10 ]
+"32
+[v ___awtoft@c c `i  1 p 2 0 ]
+"42
+} 0
+"215 D:\Backup\Files\Personal Projects\Coding\PIC_uC\MPLAB_X_3.00\Stroboscope.X\Stroboscope.c
 [v _display_num display_num `(v  1 e 1 0 ]
 {
-"127
-[v display_num@i i `i  1 a 2 2 ]
-"126
-[v display_num@val val `ui  1 p 2 0 ]
-"132
+"216
+[v display_num@i i `i  1 a 2 9 ]
+"215
+[v display_num@val val `ul  1 p 4 5 ]
+"221
 } 0
-"122
+"211
 [v _display_digit display_digit `(v  1 e 1 0 ]
 {
-[v display_digit@digit_X digit_X `i  1 p 2 7 ]
-[v display_digit@val val `i  1 p 2 9 ]
-"124
+[v display_digit@digit_X digit_X `i  1 p 2 1 ]
+[v display_digit@val val `i  1 p 2 3 ]
+"213
 } 0
-"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
-[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\llmod.c
+[v ___llmod __llmod `(ul  1 e 4 0 ]
 {
 "10
-[v ___lwmod@counter counter `uc  1 a 1 6 ]
+[v ___llmod@counter counter `uc  1 a 1 0 ]
 "5
-[v ___lwmod@divisor divisor `ui  1 p 2 2 ]
-[v ___lwmod@dividend dividend `ui  1 p 2 4 ]
+[v ___llmod@divisor divisor `ul  1 p 4 2 ]
+[v ___llmod@dividend dividend `ul  1 p 4 6 ]
 "25
 } 0
-"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
-[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+[v ___lldiv __lldiv `(ul  1 e 4 0 ]
 {
 "10
-[v ___lwdiv@quotient quotient `ui  1 a 2 6 ]
+[v ___lldiv@quotient quotient `ul  1 a 4 0 ]
 "11
-[v ___lwdiv@counter counter `uc  1 a 1 8 ]
+[v ___lldiv@counter counter `uc  1 a 1 4 ]
 "5
-[v ___lwdiv@divisor divisor `ui  1 p 2 2 ]
-[v ___lwdiv@dividend dividend `ui  1 p 2 4 ]
+[v ___lldiv@divisor divisor `ul  1 p 4 2 ]
+[v ___lldiv@dividend dividend `ul  1 p 4 6 ]
 "30
 } 0
-"114 D:\Backup\Files\Personal Projects\Coding\PIC_uC\MPLAB_X_3.00\Stroboscope.X\Stroboscope.c
+"15 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+{
+"17
+[v ___wmul@product product `ui  1 a 2 6 ]
+"15
+[v ___wmul@multiplier multiplier `ui  1 p 2 2 ]
+[v ___wmul@multiplicand multiplicand `ui  1 p 2 4 ]
+"53
+} 0
+"28 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwtoft.c
+[v ___lwtoft __lwtoft `(f  1 e 3 0 ]
+{
+[v ___lwtoft@c c `ui  1 p 2 0 ]
+"31
+} 0
+"62 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+{
+[v ___ftpack@arg arg `um  1 p 3 2 ]
+[v ___ftpack@exp exp `uc  1 p 1 5 ]
+[v ___ftpack@sign sign `uc  1 p 1 6 ]
+"86
+} 0
+"4 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lbmod.c
+[v ___lbmod __lbmod `(uc  1 e 1 0 ]
+{
+[v ___lbmod@dividend dividend `uc  1 a 1 wreg ]
+"6
+[v ___lbmod@rem rem `uc  1 a 1 7 ]
+"7
+[v ___lbmod@counter counter `uc  1 a 1 6 ]
+"4
+[v ___lbmod@dividend dividend `uc  1 a 1 wreg ]
+[v ___lbmod@divisor divisor `uc  1 p 1 2 ]
+"9
+[v ___lbmod@dividend dividend `uc  1 a 1 5 ]
+"18
+} 0
+"4 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\ftge.c
+[v ___ftge __ftge `(b  1 e 0 0 ]
+{
+[v ___ftge@ff1 ff1 `f  1 p 3 51 ]
+[v ___ftge@ff2 ff2 `f  1 p 3 54 ]
+"13
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\aldiv.c
+[v ___aldiv __aldiv `(l  1 e 4 0 ]
+{
+"10
+[v ___aldiv@quotient quotient `l  1 a 4 2 ]
+"11
+[v ___aldiv@sign sign `uc  1 a 1 1 ]
+[v ___aldiv@counter counter `uc  1 a 1 0 ]
+"5
+[v ___aldiv@divisor divisor `l  1 p 4 2 ]
+[v ___aldiv@dividend dividend `l  1 p 4 6 ]
+"41
+} 0
+"203 D:\Backup\Files\Personal Projects\Coding\PIC_uC\MPLAB_X_3.00\Stroboscope.X\Stroboscope.c
 [v _MAX7219_Setup MAX7219_Setup `(v  1 e 1 0 ]
 {
-"120
+"209
 } 0
-"95
+"184
 [v _SPI_send SPI_send `(v  1 e 1 0 ]
 {
 [v SPI_send@addr addr `uc  1 a 1 wreg ]
-"96
+"185
 [v SPI_send@i i `i  1 a 2 5 ]
-"95
+"184
 [v SPI_send@addr addr `uc  1 a 1 wreg ]
 [v SPI_send@data data `uc  1 p 1 2 ]
-"97
+"186
 [v SPI_send@addr addr `uc  1 a 1 4 ]
-"112
+"201
 } 0
-"54
+"250
+[v _ButtonBounce ButtonBounce `(v  1 e 1 0 ]
+{
+"251
+[v ButtonBounce@Button_f Button_f `l  1 s 4 Button_f ]
+"270
+} 0
+"73
 [v _ISR_function ISR_function `II(v  1 e 1 0 ]
 {
-"61
+"83
 } 0
